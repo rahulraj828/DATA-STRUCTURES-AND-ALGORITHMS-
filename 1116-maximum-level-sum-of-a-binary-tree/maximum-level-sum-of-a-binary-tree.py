@@ -5,29 +5,32 @@
 #         self.left = left
 #         self.right = right
 from collections import deque
+from typing import Optional
 
 class Solution:
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
         queue = deque([root])
-        max_sum = float('-inf')
         level = 1
-        ans = 1
+        max_sum = float('-inf')
+        answer_level = 1
 
         while queue:
-            curr_sum = 0
-            for _ in range(len(queue)):
+            level_sum = 0
+            size = len(queue)
+
+            for _ in range(size):
                 node = queue.popleft()
-                curr_sum += node.val
+                level_sum += node.val
 
                 if node.left:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
 
-            if curr_sum > max_sum:
-                max_sum = curr_sum
-                ans = level
+            if level_sum > max_sum:
+                max_sum = level_sum
+                answer_level = level
 
             level += 1
 
-        return ans
+        return answer_level
