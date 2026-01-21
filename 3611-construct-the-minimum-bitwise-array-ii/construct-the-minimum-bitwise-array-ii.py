@@ -1,5 +1,6 @@
 class Solution:
     def minBitwiseArray(self, nums: List[int]) -> List[int]:
+        
         ans = []
 
         for num in nums:
